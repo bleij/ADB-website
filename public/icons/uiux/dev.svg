@@ -1,0 +1,21 @@
+<svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13 20.5508H28" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M13 33.0508H28" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M13 8.05078H28" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M8 20.5508L33 8.05078" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M33 20.5508L8 8.05078" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M8 20.5508L33 33.0508" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M33 20.5508L8 33.0508" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M8 11.8008H7.90534C5.90196 11.8008 4.25 10.1329 4.25 8.09856C4.25 6.01199 5.94434 4.30078 8 4.30078C10.0711 4.30078 11.75 5.97971 11.75 8.05078C11.75 10.1219 10.0711 11.8008 8 11.8008Z"
+          fill="white" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M33 11.8008H32.9053C30.902 11.8008 29.25 10.1329 29.25 8.09856C29.25 6.01199 30.9443 4.30078 33 4.30078C35.0711 4.30078 36.75 5.97971 36.75 8.05078C36.75 10.1219 35.0711 11.8008 33 11.8008Z"
+          fill="white" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M8 24.3008H7.90534C5.90196 24.3008 4.25 22.6329 4.25 20.5986C4.25 18.512 5.94434 16.8008 8 16.8008C10.0711 16.8008 11.75 18.4797 11.75 20.5508C11.75 22.6219 10.0711 24.3008 8 24.3008Z"
+          fill="white" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M33 24.3008H32.9053C30.902 24.3008 29.25 22.6329 29.25 20.5986C29.25 18.512 30.9443 16.8008 33 16.8008C35.0711 16.8008 36.75 18.4797 36.75 20.5508C36.75 22.6219 35.0711 24.3008 33 24.3008Z"
+          fill="white" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M8 36.8008H7.90534C5.90196 36.8008 4.25 35.1329 4.25 33.0986C4.25 31.012 5.94434 29.3008 8 29.3008C10.0711 29.3008 11.75 30.9797 11.75 33.0508C11.75 35.1219 10.0711 36.8008 8 36.8008Z"
+          fill="white" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+    <path d="M33 36.8008H32.9053C30.902 36.8008 29.25 35.1329 29.25 33.0986C29.25 31.012 30.9443 29.3008 33 29.3008C35.0711 29.3008 36.75 30.9797 36.75 33.0508C36.75 35.1219 35.0711 36.8008 33 36.8008Z"
+          fill="white" stroke="#16181D" stroke-width="2.5" stroke-linecap="square"/>
+</svg>
