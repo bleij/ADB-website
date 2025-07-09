@@ -10,7 +10,6 @@ import UseCaseBlock from "@/components/uiux/UseCaseBlock";
 import UxDesignApplication from "@/components/uiux/UxDesignApplication";
 import ProjectsGrid from "@/components/uiux/ProjectsGrid";
 import StatsImpact from "@/components/uiux/StatsImpact";
-import Reviews from "@/components/shared/Reviews";
 
 export default function UxUiPage() {
     return (
@@ -23,7 +22,6 @@ export default function UxUiPage() {
                 <UxDesignApplication />
                 <StatsImpact />
                 <ProjectsGrid />
-                {/*<Reviews />*/}
             </main>
             <Footer />
         </>

@@ -5,11 +5,9 @@ import Hero from "@/components/mobile/Hero";
 import OfferGrid from "@/components/mobile/OfferGrid";
 import Solutions from "@/components/mobile/Solutions";
 import Philosophy from "@/components/mobile/Philosophy";
-import MobileProjects from "@/components/mobile/MobileProjects";
 import ProjectsGrid from "@/components/uiux/ProjectsGrid";
 
 import Stats from "@/components/mobile/Stats";
-import Reviews from "@/components/shared/Reviews";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -25,7 +23,6 @@ export default function MobilePage() {
                 <Philosophy />
                 <ProjectsGrid />
                 <Stats />
-                {/*<Reviews />*/}
                 <Footer />
             </main>
         </div>

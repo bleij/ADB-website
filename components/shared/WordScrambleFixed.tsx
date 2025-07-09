@@ -19,7 +19,6 @@ const WordScrambleFixed: React.FC<WordScrambleFixedProps> = ({
                                                              }) => {
     const [currentWord, setCurrentWord] = useState(words[0]);
     const [displayed, setDisplayed] = useState(words[0]);
-    const [isScrambling, setIsScrambling] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout>();
 
     const getMaxLength = () => Math.max(...words.map(w => w.length));
@@ -37,7 +36,6 @@ const WordScrambleFixed: React.FC<WordScrambleFixedProps> = ({
 
     useEffect(() => {
         const cycleWords = () => {
-            setIsScrambling(true);
 
             let scrambleCount = 10; // how many frames scramble runs
             const scrambleInterval = setInterval(() => {
@@ -52,7 +50,6 @@ const WordScrambleFixed: React.FC<WordScrambleFixedProps> = ({
                     }
                     setCurrentWord(newWord);
                     setDisplayed(newWord);
-                    setIsScrambling(false);
                 }
             }, scrambleSpeed);
         };

@@ -9,7 +9,6 @@ import MLProcess from "@/components/ml/MLProcess";
 import MLExpertise from "@/components/ml/MLExpertise";
 import MLAutomation from "@/components/ml/MLAutomation";
 import ProjectsGrid from "@/components/uiux/ProjectsGrid";
-import Reviews from "@/components/shared/Reviews";
 
 export default function MLPage() {
     return (

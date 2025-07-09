@@ -1,7 +1,6 @@
 "use client";
 
 import React, {useState} from "react";
-import {MAIN_COLOR_HEX} from "@/utils/colors";
 
 // ДАННЫЕ
 const steps = [

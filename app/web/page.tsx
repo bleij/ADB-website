@@ -8,7 +8,6 @@ import WebHero from "@/components/web/WebHero";
 import WebServices from "@/components/web/WebServices";
 import Approach from "@/components/web/Approach";
 import ProjectsGrid from "@/components/uiux/ProjectsGrid"; // переиспользуем
-import Reviews from "@/components/shared/Reviews";
 
 export default function WebPage() {
     return (
