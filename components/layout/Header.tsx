@@ -1,17 +1,20 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { Sling as Hamburger } from "hamburger-react";
+import React, {useEffect, useState, useRef} from "react";
+import {Sling as Hamburger} from "hamburger-react";
 import Link from "next/link";
-import MobileMenu from "@/components/MobileMenu";
+import {useRouter, usePathname} from "next/navigation";
 import ProjectModal from "@/components/layout/ProjectModal";
 
 const Header: React.FC = () => {
     const [isScrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false);
-    const [servicesOpen, setServicesOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+    const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,18 +30,31 @@ const Header: React.FC = () => {
                 dropdownRef.current &&
                 !dropdownRef.current.contains(event.target as Node)
             ) {
-                setServicesOpen(false);
+                setDesktopServicesOpen(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, target: string) => {
+        e.preventDefault();
+        if (pathname !== "/") {
+            router.push(`/#${target}`);
+        } else {
+            const element = document.getElementById(target);
+            if (element) {
+                element.scrollIntoView({behavior: "smooth"});
+            }
+        }
+        setOpen(false);
+    };
+
     return (
         <>
             <header
                 className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 
-            ${isScrolled ? "bg-white text-[#D7001D]" : "bg-[#D7001D] text-white"}`}
+                ${isScrolled ? "bg-white text-[#D7001D]" : "bg-[#D7001D] text-white"}`}
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
                     <Link href="/">
@@ -51,7 +67,8 @@ const Header: React.FC = () => {
                                 <path
                                     d="M32.0391 29.7409L45.7372 3.02752H46.6712L60.4135 29.7409H54.3206L52.5861 26.0901H39.8222L38.132 29.7409H32.0391ZM50.407 21.5043L46.3597 12.7779H46.004L41.9567 21.5043L41.6456 22.083H50.7181L50.407 21.5043ZM72.7909 15.7164H73.0131V0H78.3501V29.7409H74.8365L73.9918 27.7819H73.7692C73.7692 27.7819 72.4795 30.0971 68.6104 30.0971C64.2517 30.0971 60.9606 27.025 60.9606 22.083C60.9606 17.2747 64.1628 13.98 68.4322 13.98C71.7679 13.98 72.7909 15.7164 72.7909 15.7164ZM73.2799 21.994C73.2799 19.8124 71.9015 18.3877 69.7666 18.3877C67.7207 18.3877 66.342 19.857 66.342 21.994C66.342 24.1311 67.7207 25.6894 69.7666 25.6894C71.9015 25.6894 73.2799 24.2201 73.2799 21.994ZM82.6108 29.7409V0H87.9478V15.7609H88.17C88.17 15.7609 89.1486 13.98 92.484 13.98C96.7538 13.98 100 17.2747 100 22.083C100 27.025 96.7091 30.0971 92.3061 30.0971C88.4371 30.0971 87.1916 27.7374 87.1916 27.7374H86.9695L86.1244 29.7409H82.6108ZM87.681 21.994C87.681 24.2201 89.0597 25.6894 91.1499 25.6894C93.2402 25.6894 94.6189 24.1311 94.6189 21.994C94.6189 19.857 93.2402 18.3877 91.1499 18.3877C89.0597 18.3877 87.681 19.8124 87.681 21.994Z"
                                     fill="currentColor"/>
-                            </svg>                        </div>
+                            </svg>
+                        </div>
                     </Link>
 
                     <nav className="hidden md:flex gap-6 text-sm font-medium items-center relative">
@@ -59,21 +76,23 @@ const Header: React.FC = () => {
                         <Link href="/projects" className="hover:underline">Проекты</Link>
                         <div ref={dropdownRef} className="relative">
                             <button
-                                onClick={() => setServicesOpen((prev) => !prev)}
+                                onClick={() => setDesktopServicesOpen((prev) => !prev)}
                                 className="hover:underline focus:outline-none"
                             >
                                 Услуги
                             </button>
-                            {servicesOpen && (
-                                <div className="absolute top-full mt-2 w-40 bg-white text-black rounded shadow-lg py-2 z-50">
-                                    <a href="/web" className="block px-4 py-2 hover:bg-gray-100">Web</a>
-                                    <a href="/ml" className="block px-4 py-2 hover:bg-gray-100">ML</a>
-                                    <a href="/uxui" className="block px-4 py-2 hover:bg-gray-100">UX/UI</a>
-                                    <a href="/mobile" className="block px-4 py-2 hover:bg-gray-100">Mobile</a>
+                            {desktopServicesOpen && (
+                                <div
+                                    className="absolute top-full mt-2 w-40 bg-white text-black rounded shadow-lg py-2 z-50">
+                                    <Link href="/web" className="block px-4 py-2 hover:bg-gray-100">Web</Link>
+                                    <Link href="/ml" className="block px-4 py-2 hover:bg-gray-100">ML</Link>
+                                    <Link href="/uxui" className="block px-4 py-2 hover:bg-gray-100">UX/UI</Link>
+                                    <Link href="/mobile" className="block px-4 py-2 hover:bg-gray-100">Mobile</Link>
                                 </div>
                             )}
                         </div>
-                        <a href="#footer" className="hover:underline">Контакты</a>
+                        <a href="#footer" onClick={(e) => handleAnchorClick(e, "footer")}
+                           className="hover:underline">Контакты</a>
                     </nav>
 
                     <div className="flex gap-4 text-sm items-center">
@@ -87,26 +106,38 @@ const Header: React.FC = () => {
                         >
                             Стать клиентом
                         </button>
-                        <MobileMenu />
+                        <div className="md:hidden">
+                            <Hamburger toggled={isOpen} toggle={setOpen} color={isScrolled ? "#D7001D" : "white"}/>
+                        </div>
                     </div>
                 </div>
 
                 {isOpen && (
                     <div className="md:hidden bg-white text-black">
                         <nav className="flex flex-col gap-4 py-4 px-6">
-                            <a href="/projects" onClick={() => setOpen(false)}>Проекты</a>
-                            <a href="/web" onClick={() => setOpen(false)}>Web</a>
-                            <a href="/ml" onClick={() => setOpen(false)}>ML</a>
-                            <a href="/uxui" onClick={() => setOpen(false)}>UX/UI</a>
-                            <a href="/mobile" onClick={() => setOpen(false)}>Mobile</a>
-                            <a href="#footer" onClick={() => setOpen(false)}>Контакты</a>
+                            <Link href="/projects" onClick={() => setOpen(false)}>Проекты</Link>
+                            <button
+                                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                                className="text-left"
+                            >
+                                Услуги
+                            </button>
+                            {mobileServicesOpen && (
+                                <div className="pl-4 flex flex-col gap-2">
+                                    <Link href="/web" onClick={() => setOpen(false)}>Web</Link>
+                                    <Link href="/ml" onClick={() => setOpen(false)}>ML</Link>
+                                    <Link href="/uxui" onClick={() => setOpen(false)}>UX/UI</Link>
+                                    <Link href="/mobile" onClick={() => setOpen(false)}>Mobile</Link>
+                                </div>
+                            )}
+                            <a href="#footer" onClick={(e) => handleAnchorClick(e, "footer")}>Контакты</a>
                             <div className="pt-4 border-t border-gray-200 text-sm">+7 (777) 123‑12‑12</div>
                         </nav>
                     </div>
                 )}
             </header>
 
-            <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </>
     );
 };

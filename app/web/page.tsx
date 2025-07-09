@@ -23,9 +23,7 @@ export default function WebPage() {
                 {/* Блок «От идеи до релиза: наш подход» */}
                 <Approach />
 
-                <div className="block md:hidden">
-                    <ProjectsGrid />
-                </div>
+                <ProjectsGrid />
 
                 {/* Отзывы */}
                 {/*<Reviews />*/}

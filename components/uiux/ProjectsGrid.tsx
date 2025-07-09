@@ -37,7 +37,7 @@ export default function ProjectsGrid() {
 
                 {/* Ссылка на все проекты */}
                 <div className="text-center mt-6">
-                    <a href="#projects" className="text-red-700 hover:underline">
+                    <a href="/projects" className="text-red-700 hover:underline">
                         Смотреть все проекты →
                     </a>
                 </div>

@@ -21,8 +21,8 @@ export default function UxUiPage() {
                 <StepsBlock />
                 <UseCaseBlock />
                 <UxDesignApplication />
-                <ProjectsGrid />
                 <StatsImpact />
+                <ProjectsGrid />
                 {/*<Reviews />*/}
             </main>
             <Footer />

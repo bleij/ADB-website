@@ -38,7 +38,7 @@ export default function ProjectsPage() {
             <Header />
 
             <main
-                className="bg-white min-h-screen py-12 px-4 sm:px-6 lg:px-0"
+                className="bg-white min-h-screen mt-16 py-12 px-4 sm:px-6 lg:px-0"
                 style={{ fontFamily: "'Manrope', sans-serif" }}
             >
                 <div className="max-w-7xl mx-auto">
