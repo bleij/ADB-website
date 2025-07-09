@@ -1,0 +1,66 @@
+/* PageTransition.module.css */
+
+.wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem;
+    pointer-events: none;
+    transition: background-color 0.6s ease, opacity 0.6s ease;
+    opacity: 1;
+}
+
+.fadeInWhite {
+    background-color: white;
+    opacity: 1;
+}
+
+.typing {
+    background-color: white;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fadeOut {
+    background-color: #D7001D;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.codeContent {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    color: #111;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.codeContent {
+    max-height: 100%;
+    overflow-y: auto;
+
+    /* скрытие скроллбара */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+.codeContent::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.blinking {
+    animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}

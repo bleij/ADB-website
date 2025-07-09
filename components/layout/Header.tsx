@@ -1,89 +1,113 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
-import {MAIN_COLOR_HEX} from "@/utils/colors";
+import React, { useEffect, useState, useRef } from "react";
+import { Sling as Hamburger } from "hamburger-react";
+import Link from "next/link";
+import MobileMenu from "@/components/MobileMenu";
+import ProjectModal from "@/components/layout/ProjectModal";
 
 const Header: React.FC = () => {
-    const [scrollProgress, setScrollProgress] = useState(0);
+    const [isScrolled, setScrolled] = useState(false);
+    const [isOpen, setOpen] = useState(false);
+    const [servicesOpen, setServicesOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const onScroll = () => {
-            const scrollY = window.scrollY;
-            const triggerHeight = window.innerHeight; // высота Hero
-
-            // прогресс от 0 до 1
-            const progress = Math.min(scrollY / triggerHeight, 1);
-            setScrollProgress(progress);
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
         };
-
-        window.addEventListener("scroll", onScroll);
-
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // считаем цвет в зависимости от прогресса
-    const red = 215; // D7
-    const green = 0;
-    const blue = 29; // 1D
-
-    // альфа уменьшается по мере скролла
-    const alpha = 1 - scrollProgress; // 1 → 0
-
-    const backgroundColor = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
-    const textColor = scrollProgress >= 1 ? '#D7001D' : 'white';
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setServicesOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
-        <header
-            id="site-header"
-            style={{
-                backgroundColor: backgroundColor,
-                color: textColor,
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)',
-                transition: 'background-color 0.2s ease, color 0.2s ease',
-            }}
-            className="fixed top-0 left-0 w-full z-50 py-4 px-6"
-        >
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                {/* SVG logo */}
-                <div className="w-[100px] h-[39px]">
-                    <svg width="100" height="39" viewBox="0 0 100 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.19719 11.6859C9.01759 11.7531 8.85703 11.9214 8.79011 12.1115C8.76717 12.1788 8.76142 12.8142 8.75381 16.4565L8.74427 20.7224L4.63493 20.7322C0.313468 20.7421 0.456819 20.7402 0.361253 20.8234C0.345962 20.8391 0.323026 20.8511 0.313472 20.8511C0.279068 20.8511 0.158656 20.9817 0.105137 21.0747C-0.00380716 21.2707 1.64493e-05 21.1242 1.64493e-05 25.2555C1.64493e-05 29.3293 -0.0018938 29.2343 0.0936695 29.4125C0.141454 29.5015 0.302004 29.6797 0.334494 29.6797C0.345962 29.6797 0.365079 29.6896 0.378455 29.7035C0.389924 29.7153 0.458731 29.743 0.529445 29.7629C0.651772 29.7965 0.877304 29.7985 4.68273 29.7985C6.89603 29.7985 8.71748 29.7985 8.73084 29.7985C8.74806 29.7985 8.75381 30.6516 8.75381 33.999C8.75381 38.5341 8.74806 38.2749 8.84745 38.4864C8.88568 38.5676 9.0462 38.724 9.15903 38.7873L9.2412 38.835H13.102C16.7412 38.835 16.9667 38.8331 17.0278 38.7992C17.0642 38.7814 17.1043 38.7657 17.1177 38.7657C17.1559 38.7657 17.3642 38.5479 17.3987 38.4689C17.4158 38.4313 17.4388 38.352 17.4502 38.2924C17.4636 38.2235 17.4694 36.7407 17.4694 33.9871C17.4694 30.7466 17.4751 29.7807 17.4923 29.7629C17.5095 29.745 18.4517 29.7391 21.6188 29.7391C25.7013 29.7391 25.7224 29.7391 25.8046 29.6995C25.9843 29.6124 26.0836 29.5194 26.1582 29.367L26.2136 29.2541V20.6927V12.1312L26.1582 12.0184C26.0951 11.8878 26.0053 11.7967 25.86 11.7155L25.7549 11.6562L17.5267 11.6522C9.44574 11.6482 9.29661 11.6482 9.19719 11.6859ZM17.4942 15.7518C17.5248 15.7597 17.5267 15.8943 17.5267 18.2163V20.6729H19.8852C22.0049 20.6729 22.2476 20.6768 22.2744 20.7045C22.3011 20.7323 22.305 20.9837 22.305 23.175C22.305 25.208 22.3011 25.6197 22.2782 25.6395C22.2591 25.6553 21.615 25.6593 19.8661 25.6573L17.4789 25.6514L17.4751 23.1968L17.4694 20.7422L15.1165 20.7362C13.4155 20.7343 12.7542 20.7264 12.7351 20.7105C12.714 20.6907 12.7102 20.2651 12.7102 18.2183C12.7102 15.92 12.7121 15.7459 12.7427 15.7399C12.7905 15.73 17.4541 15.7419 17.4942 15.7518Z"
-                            fill="currentColor"/>
-                        <path
-                            d="M32.0391 29.7409L45.7372 3.02752H46.6712L60.4135 29.7409H54.3206L52.5861 26.0901H39.8222L38.132 29.7409H32.0391ZM50.407 21.5043L46.3597 12.7779H46.004L41.9567 21.5043L41.6456 22.083H50.7181L50.407 21.5043ZM72.7909 15.7164H73.0131V0H78.3501V29.7409H74.8365L73.9918 27.7819H73.7692C73.7692 27.7819 72.4795 30.0971 68.6104 30.0971C64.2517 30.0971 60.9606 27.025 60.9606 22.083C60.9606 17.2747 64.1628 13.98 68.4322 13.98C71.7679 13.98 72.7909 15.7164 72.7909 15.7164ZM73.2799 21.994C73.2799 19.8124 71.9015 18.3877 69.7666 18.3877C67.7207 18.3877 66.342 19.857 66.342 21.994C66.342 24.1311 67.7207 25.6894 69.7666 25.6894C71.9015 25.6894 73.2799 24.2201 73.2799 21.994ZM82.6108 29.7409V0H87.9478V15.7609H88.17C88.17 15.7609 89.1486 13.98 92.484 13.98C96.7538 13.98 100 17.2747 100 22.083C100 27.025 96.7091 30.0971 92.3061 30.0971C88.4371 30.0971 87.1916 27.7374 87.1916 27.7374H86.9695L86.1244 29.7409H82.6108ZM87.681 21.994C87.681 24.2201 89.0597 25.6894 91.1499 25.6894C93.2402 25.6894 94.6189 24.1311 94.6189 21.994C94.6189 19.857 93.2402 18.3877 91.1499 18.3877C89.0597 18.3877 87.681 19.8124 87.681 21.994Z"
-                            fill="currentColor"/>
-                    </svg>
+        <>
+            <header
+                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 
+            ${isScrolled ? "bg-white text-[#D7001D]" : "bg-[#D7001D] text-white"}`}
+            >
+                <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
+                    <Link href="/">
+                        <div className="w-[100px] h-[39px] text-inherit">
+                            <svg width="100" height="39" viewBox="0 0 100 39" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.19719 11.6859C9.01759 11.7531 8.85703 11.9214 8.79011 12.1115C8.76717 12.1788 8.76142 12.8142 8.75381 16.4565L8.74427 20.7224L4.63493 20.7322C0.313468 20.7421 0.456819 20.7402 0.361253 20.8234C0.345962 20.8391 0.323026 20.8511 0.313472 20.8511C0.279068 20.8511 0.158656 20.9817 0.105137 21.0747C-0.00380716 21.2707 1.64493e-05 21.1242 1.64493e-05 25.2555C1.64493e-05 29.3293 -0.0018938 29.2343 0.0936695 29.4125C0.141454 29.5015 0.302004 29.6797 0.334494 29.6797C0.345962 29.6797 0.365079 29.6896 0.378455 29.7035C0.389924 29.7153 0.458731 29.743 0.529445 29.7629C0.651772 29.7965 0.877304 29.7985 4.68273 29.7985C6.89603 29.7985 8.71748 29.7985 8.73084 29.7985C8.74806 29.7985 8.75381 30.6516 8.75381 33.999C8.75381 38.5341 8.74806 38.2749 8.84745 38.4864C8.88568 38.5676 9.0462 38.724 9.15903 38.7873L9.2412 38.835H13.102C16.7412 38.835 16.9667 38.8331 17.0278 38.7992C17.0642 38.7814 17.1043 38.7657 17.1177 38.7657C17.1559 38.7657 17.3642 38.5479 17.3987 38.4689C17.4158 38.4313 17.4388 38.352 17.4502 38.2924C17.4636 38.2235 17.4694 36.7407 17.4694 33.9871C17.4694 30.7466 17.4751 29.7807 17.4923 29.7629C17.5095 29.745 18.4517 29.7391 21.6188 29.7391C25.7013 29.7391 25.7224 29.7391 25.8046 29.6995C25.9843 29.6124 26.0836 29.5194 26.1582 29.367L26.2136 29.2541V20.6927V12.1312L26.1582 12.0184C26.0951 11.8878 26.0053 11.7967 25.86 11.7155L25.7549 11.6562L17.5267 11.6522C9.44574 11.6482 9.29661 11.6482 9.19719 11.6859ZM17.4942 15.7518C17.5248 15.7597 17.5267 15.8943 17.5267 18.2163V20.6729H19.8852C22.0049 20.6729 22.2476 20.6768 22.2744 20.7045C22.3011 20.7323 22.305 20.9837 22.305 23.175C22.305 25.208 22.3011 25.6197 22.2782 25.6395C22.2591 25.6553 21.615 25.6593 19.8661 25.6573L17.4789 25.6514L17.4751 23.1968L17.4694 20.7422L15.1165 20.7362C13.4155 20.7343 12.7542 20.7264 12.7351 20.7105C12.714 20.6907 12.7102 20.2651 12.7102 18.2183C12.7102 15.92 12.7121 15.7459 12.7427 15.7399C12.7905 15.73 17.4541 15.7419 17.4942 15.7518Z"
+                                    fill="currentColor"/>
+                                <path
+                                    d="M32.0391 29.7409L45.7372 3.02752H46.6712L60.4135 29.7409H54.3206L52.5861 26.0901H39.8222L38.132 29.7409H32.0391ZM50.407 21.5043L46.3597 12.7779H46.004L41.9567 21.5043L41.6456 22.083H50.7181L50.407 21.5043ZM72.7909 15.7164H73.0131V0H78.3501V29.7409H74.8365L73.9918 27.7819H73.7692C73.7692 27.7819 72.4795 30.0971 68.6104 30.0971C64.2517 30.0971 60.9606 27.025 60.9606 22.083C60.9606 17.2747 64.1628 13.98 68.4322 13.98C71.7679 13.98 72.7909 15.7164 72.7909 15.7164ZM73.2799 21.994C73.2799 19.8124 71.9015 18.3877 69.7666 18.3877C67.7207 18.3877 66.342 19.857 66.342 21.994C66.342 24.1311 67.7207 25.6894 69.7666 25.6894C71.9015 25.6894 73.2799 24.2201 73.2799 21.994ZM82.6108 29.7409V0H87.9478V15.7609H88.17C88.17 15.7609 89.1486 13.98 92.484 13.98C96.7538 13.98 100 17.2747 100 22.083C100 27.025 96.7091 30.0971 92.3061 30.0971C88.4371 30.0971 87.1916 27.7374 87.1916 27.7374H86.9695L86.1244 29.7409H82.6108ZM87.681 21.994C87.681 24.2201 89.0597 25.6894 91.1499 25.6894C93.2402 25.6894 94.6189 24.1311 94.6189 21.994C94.6189 19.857 93.2402 18.3877 91.1499 18.3877C89.0597 18.3877 87.681 19.8124 87.681 21.994Z"
+                                    fill="currentColor"/>
+                            </svg>                        </div>
+                    </Link>
+
+                    <nav className="hidden md:flex gap-6 text-sm font-medium items-center relative">
+                        <Link href="/" className="hover:underline">Главная</Link>
+                        <Link href="/projects" className="hover:underline">Проекты</Link>
+                        <div ref={dropdownRef} className="relative">
+                            <button
+                                onClick={() => setServicesOpen((prev) => !prev)}
+                                className="hover:underline focus:outline-none"
+                            >
+                                Услуги
+                            </button>
+                            {servicesOpen && (
+                                <div className="absolute top-full mt-2 w-40 bg-white text-black rounded shadow-lg py-2 z-50">
+                                    <a href="/web" className="block px-4 py-2 hover:bg-gray-100">Web</a>
+                                    <a href="/ml" className="block px-4 py-2 hover:bg-gray-100">ML</a>
+                                    <a href="/uxui" className="block px-4 py-2 hover:bg-gray-100">UX/UI</a>
+                                    <a href="/mobile" className="block px-4 py-2 hover:bg-gray-100">Mobile</a>
+                                </div>
+                            )}
+                        </div>
+                        <a href="#footer" className="hover:underline">Контакты</a>
+                    </nav>
+
+                    <div className="flex gap-4 text-sm items-center">
+                        <span className="hidden sm:inline">+7 (777) 123-12-12</span>
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className={`px-4 py-1 rounded border transition-colors duration-300
+                            ${isScrolled
+                                ? "border-[#D7001D] text-[#D7001D] hover:bg-[#D7001D] hover:text-white"
+                                : "border-white text-white hover:bg-white hover:text-[#D7001D]"}`}
+                        >
+                            Стать клиентом
+                        </button>
+                        <MobileMenu />
+                    </div>
                 </div>
 
-                {/* Navigation */}
-                <nav className="hidden md:flex gap-6 text-sm font-medium">
-                    <a href="#projects" className="hover:underline">Проекты</a>
-                    <a href="#services" className="hover:underline">Услуги</a>
-                    <a href="#contacts" className="hover:underline">Контакты</a>
-                </nav>
+                {isOpen && (
+                    <div className="md:hidden bg-white text-black">
+                        <nav className="flex flex-col gap-4 py-4 px-6">
+                            <a href="/projects" onClick={() => setOpen(false)}>Проекты</a>
+                            <a href="/web" onClick={() => setOpen(false)}>Web</a>
+                            <a href="/ml" onClick={() => setOpen(false)}>ML</a>
+                            <a href="/uxui" onClick={() => setOpen(false)}>UX/UI</a>
+                            <a href="/mobile" onClick={() => setOpen(false)}>Mobile</a>
+                            <a href="#footer" onClick={() => setOpen(false)}>Контакты</a>
+                            <div className="pt-4 border-t border-gray-200 text-sm">+7 (777) 123‑12‑12</div>
+                        </nav>
+                    </div>
+                )}
+            </header>
 
-                {/* Right side */}
-                <div className="flex gap-4 text-sm items-center">
-                    <span className="hidden sm:inline">+7 (777) 123-12-12</span>
-                    <a
-                        href="#contact-form"
-                        className="
-                            px-4 py-1 rounded
-                            text-current
-                            shadow-[inset_0_0_0_1px_currentColor]
-                            hover:bg-current hover:text-white
-                            transition-colors duration-300
-                        "
-                    >
-                        Стать клиентом
-                    </a>
-                </div>
-            </div>
-        </header>
+            <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </>
     );
 };
 

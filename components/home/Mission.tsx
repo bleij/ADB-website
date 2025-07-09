@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TypewriterClean from "@/components/TypewriterClean";
+import TypewriterClean from "@/components/shared/TypewriterClean";
 import { MAIN_COLOR_HEX } from "@/utils/colors";
 
 const words1 = ["усиливают", "продвигают", "ускоряют", "трансформируют"];
@@ -12,83 +12,90 @@ const Mission: React.FC = () => {
     return (
         <section
             id="mission"
-            className="relative z-20 bg-white px-6 overflow-hidden"
+            className="relative z-20 bg-white px-6 overflow-hidden pt-32 pb-24"
             style={{
                 fontFamily: "'Manrope', sans-serif",
-                minHeight: "calc(1.5em * 6)", // 6 строк
                 display: "flex",
                 alignItems: "center",
-                paddingTop: "4rem",
-                paddingBottom: "3rem"
             }}
         >
-
-            {/* ЛОГОБЭК — на всю-всю высоту */}
             <img
                 src="/icons/logoback.svg"
                 alt="background logo"
                 className="absolute top-0 right-0 h-full object-cover pointer-events-none"
                 style={{
-                    zIndex: 20,
-                    transform: "scale(1.3)", // увеличить на 30%
-                    transformOrigin: "top right" // чтобы увеличивалось вправо вниз
+                    zIndex: 1,
+                    transform: "scale(1)",
+                    transformOrigin: "top right",
                 }}
             />
 
-            {/* ТЕКСТ */}
             <div className="relative z-10 max-w-7xl mx-auto w-full">
                 <div
-                    className="text-left text-[32px] sm:text-[40px] font-medium text-gray-800 leading-[1.5] max-w-[55%]"
-                    style={{
-                        minHeight: "calc(1.5em * 6)", // 6 строк жёстко
-                    }}
+                    className="text-[32px] sm:text-[40px] font-medium text-gray-800 leading-[1.5]"
                 >
-                    Мы внедряем технологии, которые работают на результат: <br />
-
-                    <div style={{ whiteSpace: "nowrap" }}>
-                        <span style={{ color: MAIN_COLOR_HEX }}>
-                            <TypewriterClean
-                                words={words1}
-                                typingSpeed={50}
-                                deletingSpeed={30}
-                                delayBetween={4000}
-                            />
-                        </span>
-                        <span style={{ color: "#1F2937", marginLeft: "8px" }}>
-                            бизнес,
-                        </span>
+                    {/* Заголовок */}
+                    <div className="max-w-full sm:max-w-[60%]">
+            <span className="block sm:inline font-black">
+              Мы внедряем технологии,
+            </span>{" "}
+                        <span className="block sm:inline font-black">
+              которые работают на результат:
+            </span>
                     </div>
 
-                    <div style={{ whiteSpace: "nowrap" }}>
-                        <span style={{ color: MAIN_COLOR_HEX }}>
-                            <TypewriterClean
-                                words={words2}
-                                typingSpeed={50}
-                                deletingSpeed={30}
-                                delayBetween={4000}
-                            />
-                        </span>
-                        <span style={{ color: "#1F2937", marginLeft: "8px" }}>
-                            без ограничений и
-                        </span>
-                    </div>
+                    <div className="mt-6 space-y-3">
+                        {/* Строка 1 */}
+                        <div className="block sm:flex sm:whitespace-nowrap">
+              <span style={{ color: MAIN_COLOR_HEX }}>
+                <TypewriterClean
+                    words={words1}
+                    typingSpeed={50}
+                    deletingSpeed={30}
+                    delayBetween={4000}
+                />
+              </span>
+                            <span className="ml-2 text-gray-800">бизнес,</span>
+                        </div>
 
-                    <div style={{ whiteSpace: "nowrap" }}>
-                        <span style={{ color: MAIN_COLOR_HEX }}>
-                            <TypewriterClean
-                                words={words3}
-                                typingSpeed={50}
-                                deletingSpeed={30}
-                                delayBetween={4000}
-                            />
-                        </span>
-                        <span style={{ color: "#1F2937", marginLeft: "8px" }}>
-                            ваше стратегическое преимущество.
-                        </span>
+                        {/* Строка 2 */}
+                        <div>
+                            <div className="sm:inline-block">
+                <span style={{ color: MAIN_COLOR_HEX }}>
+                  <TypewriterClean
+                      words={words2}
+                      typingSpeed={50}
+                      deletingSpeed={30}
+                      delayBetween={4000}
+                  />
+                </span>
+                                <span className="ml-2 text-gray-800">без</span>
+                            </div>
+                            <div className="text-gray-800 sm:inline-block sm:ml-2">
+                                ограничений и
+                            </div>
+                        </div>
+
+                        {/* Строка 3 */}
+                        <div>
+                            <div className="sm:inline-block">
+                <span style={{ color: MAIN_COLOR_HEX }}>
+                  <TypewriterClean
+                      words={words3}
+                      typingSpeed={50}
+                      deletingSpeed={30}
+                      delayBetween={4000}
+                  />
+                </span>
+                                <span className="ml-2 text-gray-800">ваше</span>
+                            </div>
+                            <div className="text-gray-800 sm:inline-block sm:ml-2">
+                                стратегическое преимущество.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </section>
     );
 };

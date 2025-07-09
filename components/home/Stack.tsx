@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { MAIN_COLOR_HEX } from "@/utils/colors";
 
 const techStack = [
     { name: "Golang", icon: "/icons/stack/golang.svg" },
@@ -26,56 +25,76 @@ const frameworks = [
 
 const Stack: React.FC = () => {
     return (
-        <section className="relative z-20 bg-white py-32 px-6" style={{ fontFamily: "'Manrope', sans-serif" }}>
+        <section className="relative z-20 bg-white py-4 px-6" style={{ fontFamily: "'Manrope', sans-serif" }}>
             <div className="max-w-7xl mx-auto">
                 {/* Заголовок */}
-                <h2 className="text-4xl font-bold mb-12 text-black flex items-center gap-1">
+                <h2 className="text-4xl font-medium mb-12 text-black flex items-center gap-1">
                     Стек технологий
                     <img src="/icons/logo.svg" alt="logo" className="w-5 h-5 inline-block" />
                 </h2>
 
-                {/* Технологии */}
-                <div className="mb-16 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-8">
+                {/* Desktop grid */}
+                <div className="mb-16 sm:grid sm:grid-cols-4 md:grid-cols-8 gap-8 hidden sm:grid">
                     {techStack.map((tech, index) => (
-                        <div
-                            key={`tech-${index}`}
-                            className="flex flex-col items-center justify-center"
-                        >
+                        <div key={`tech-${index}`} className="flex flex-col items-center justify-center">
                             <div className="w-[72px] h-[72px] rounded-[12px] overflow-hidden mb-2">
-                                <img
-                                    src={tech.icon}
-                                    alt={tech.name}
-                                    className="w-full h-full object-cover"
-                                />
+                                <img src={tech.icon} alt={tech.name} className="w-full h-full object-cover" />
                             </div>
-                            <p className="text-sm text-black text-center">{tech.name}</p>
+                            <p className="text-sm text-black text-center font-thin">{tech.name}</p>
                         </div>
                     ))}
                 </div>
 
-                {/* Заголовок Framework — такого же размера как "Стек технологий" */}
-                <h2 className="text-4xl font-bold mb-12 text-black flex items-center gap-1">
+                {/* Mobile scroll */}
+                <div className="block sm:hidden overflow-hidden mb-16">
+                    <div className="flex w-max animate-scroll-left">
+                        {[...techStack, ...techStack].map((tech, index) => (
+                            <div
+                                key={`tech-scroll-${index}`}
+                                className="flex-shrink-0 flex flex-col items-center justify-center mr-6"
+                            >
+                                <div className="w-[72px] h-[72px] rounded-[12px] overflow-hidden mb-2">
+                                    <img src={tech.icon} alt={tech.name} className="w-full h-full object-cover" />
+                                </div>
+                                <p className="text-sm text-black text-center font-thin">{tech.name}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Заголовок Framework */}
+                <h2 className="text-4xl font-medium mb-12 text-black flex items-center gap-1">
                     Framework
                     <img src="/icons/logo.svg" alt="logo" className="w-5 h-5 inline-block" />
                 </h2>
 
-                {/* Framework — 7 штук → равномерно */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-8">
+                {/* Desktop grid */}
+                <div className="sm:grid sm:grid-cols-4 md:grid-cols-7 gap-8 hidden sm:grid">
                     {frameworks.map((fw, index) => (
-                        <div
-                            key={`fw-${index}`}
-                            className="flex flex-col items-center justify-center"
-                        >
+                        <div key={`fw-${index}`} className="flex flex-col items-center justify-center">
                             <div className="w-[72px] h-[72px] rounded-[12px] overflow-hidden mb-2">
-                                <img
-                                    src={fw.icon}
-                                    alt={fw.name}
-                                    className="w-full h-full object-cover"
-                                />
+                                <img src={fw.icon} alt={fw.name} className="w-full h-full object-cover" />
                             </div>
-                            <p className="text-sm text-black text-center">{fw.name}</p>
+                            <p className="text-sm text-black text-center font-thin">{fw.name}</p>
                         </div>
                     ))}
+                </div>
+
+                {/* Mobile scroll */}
+                <div className="block sm:hidden overflow-hidden">
+                    <div className="flex w-max animate-scroll-left">
+                        {[...frameworks, ...frameworks].map((fw, index) => (
+                            <div
+                                key={`fw-scroll-${index}`}
+                                className="flex-shrink-0 flex flex-col items-center justify-center mr-6"
+                            >
+                                <div className="w-[72px] h-[72px] rounded-[12px] overflow-hidden mb-2">
+                                    <img src={fw.icon} alt={fw.name} className="w-full h-full object-cover" />
+                                </div>
+                                <p className="text-sm text-black text-center font-thin">{fw.name}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
