@@ -63,24 +63,24 @@ const Contact: React.FC = () => {
                         />
 
                         <PhoneInput
-                            defaultCountry="kz"
-                            value={phone}
-                            onChange={setPhone}
-                            inputClassName="
-    !bg-[#F4F5F7] !text-black !text-lg
-    !w-full !h-[72px] !pl-[68px] !pr-6
-    !rounded-full !border-none !focus:outline-none
-  "
-                            containerClassName="
-    !w-full !relative
-  "
-                            buttonClassName="
-    !absolute !left-5 !top-1/2 !-translate-y-1/2
-    !w-[32px] !h-[32px]
-    !bg-transparent !rounded-none !shadow-none !border-none
-    !p-0 !m-0 !flex !items-center !justify-center
-  "
-                            dropdownClassName="!rounded-xl !shadow-md"
+                            {...({
+                                defaultCountry: "kz",
+                                value: phone,
+                                onChange: setPhone,
+                                inputClassName: `
+      !bg-[#F4F5F7] !text-black !text-lg
+      !w-full !h-[72px] !pl-[68px] !pr-6
+      !rounded-full !border-none !focus:outline-none
+    `,
+                                containerClassName: "!w-full !relative",
+                                buttonClassName: `
+      !absolute !left-5 !top-1/2 !-translate-y-1/2
+      !w-[32px] !h-[32px]
+      !bg-transparent !rounded-none !shadow-none !border-none
+      !p-0 !m-0 !flex !items-center !justify-center
+    `,
+                                dropdownClassName: "!rounded-xl !shadow-md",
+                            } as any)}
                         />
 
                         <button
