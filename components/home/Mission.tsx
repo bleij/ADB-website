@@ -2,7 +2,8 @@
 
 import React from "react";
 import TypewriterClean from "@/components/shared/TypewriterClean";
-import { MAIN_COLOR_HEX } from "@/utils/colors";
+import {MAIN_COLOR_HEX} from "@/utils/colors";
+import Image from "next/image";
 
 const words1 = ["усиливают", "продвигают", "ускоряют", "трансформируют"];
 const words2 = ["масштабируются", "адаптируются", "развиваются", "растут"];
@@ -19,15 +20,18 @@ const Mission: React.FC = () => {
                 alignItems: "center",
             }}
         >
-            <img
+            <Image
                 src="/icons/logoback.svg"
                 alt="background logo"
-                className="absolute top-0 right-0 h-full object-cover pointer-events-none"
+                fill
                 style={{
+                    objectFit: "cover",
                     zIndex: 1,
                     transform: "scale(1)",
                     transformOrigin: "top right",
+                    pointerEvents: "none",
                 }}
+                className="absolute top-0 right-0"
             />
 
             <div className="relative z-10 max-w-7xl mx-auto w-full">
@@ -47,7 +51,7 @@ const Mission: React.FC = () => {
                     <div className="mt-6 space-y-3">
                         {/* Строка 1 */}
                         <div className="block sm:flex sm:whitespace-nowrap">
-              <span style={{ color: MAIN_COLOR_HEX }}>
+              <span style={{color: MAIN_COLOR_HEX}}>
                 <TypewriterClean
                     words={words1}
                     typingSpeed={50}
@@ -61,7 +65,7 @@ const Mission: React.FC = () => {
                         {/* Строка 2 */}
                         <div>
                             <div className="sm:inline-block">
-                <span style={{ color: MAIN_COLOR_HEX }}>
+                <span style={{color: MAIN_COLOR_HEX}}>
                   <TypewriterClean
                       words={words2}
                       typingSpeed={50}
@@ -79,7 +83,7 @@ const Mission: React.FC = () => {
                         {/* Строка 3 */}
                         <div>
                             <div className="sm:inline-block">
-                <span style={{ color: MAIN_COLOR_HEX }}>
+                <span style={{color: MAIN_COLOR_HEX}}>
                   <TypewriterClean
                       words={words3}
                       typingSpeed={50}

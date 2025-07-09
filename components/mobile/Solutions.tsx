@@ -20,8 +20,8 @@ const Solutions: React.FC = () => {
 
     const titleRef = useRef<HTMLHeadingElement>(null);
     const descRef = useRef<HTMLParagraphElement>(null);
-    const scrambleTitle = useRef<TextScramble>();
-    const scrambleDesc = useRef<TextScramble>();
+    const scrambleTitle = useRef<TextScramble | null>(null);
+    const scrambleDesc = useRef<TextScramble | null>(null);
 
     useEffect(() => {
         if (titleRef.current && descRef.current) {
@@ -33,7 +33,7 @@ const Solutions: React.FC = () => {
     useEffect(() => {
         scrambleTitle.current?.setText(active.title);
         scrambleDesc.current?.setText(active.description);
-    }, [activeKey]);
+    }, [active.title, active.description]);
 
     return (
         <section className="bg-white py-8 px-2 md:py-20 md:px-6" style={{ fontFamily: "'Manrope', sans-serif" }}>

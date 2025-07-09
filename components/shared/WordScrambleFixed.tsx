@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 
 interface WordScrambleFixedProps {
     words: string[];
@@ -19,31 +19,31 @@ const WordScrambleFixed: React.FC<WordScrambleFixedProps> = ({
                                                              }) => {
     const [currentWord, setCurrentWord] = useState(words[0]);
     const [displayed, setDisplayed] = useState(words[0]);
-    const timeoutRef = useRef<NodeJS.Timeout>();
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    const getMaxLength = () => Math.max(...words.map(w => w.length));
+    const getMaxLength = useCallback(() => {
+        return Math.max(...words.map(w => w.length));
+    }, [words]);
 
-    const scrambleOnce = () => {
-        setDisplayed(prev => {
-            return prev
+    const scrambleOnce = useCallback(() => {
+        setDisplayed(prev =>
+            prev
                 .split("")
                 .map(() =>
                     scrambleChars.charAt(Math.floor(Math.random() * scrambleChars.length))
                 )
-                .join("");
-        });
-    };
+                .join("")
+        );
+    }, [scrambleChars]);
 
     useEffect(() => {
         const cycleWords = () => {
-
-            let scrambleCount = 10; // how many frames scramble runs
+            let scrambleCount = 10;
             const scrambleInterval = setInterval(() => {
                 scrambleOnce();
                 scrambleCount--;
                 if (scrambleCount <= 0) {
                     clearInterval(scrambleInterval);
-                    // Pick new word
                     let newWord = currentWord;
                     while (newWord === currentWord) {
                         newWord = words[Math.floor(Math.random() * words.length)];
@@ -57,9 +57,11 @@ const WordScrambleFixed: React.FC<WordScrambleFixedProps> = ({
         timeoutRef.current = setInterval(cycleWords, interval);
 
         return () => {
-            if (timeoutRef.current) clearInterval(timeoutRef.current);
+            if (timeoutRef.current) {
+                clearInterval(timeoutRef.current);
+            }
         };
-    }, [currentWord, words, interval, scrambleSpeed, scrambleChars]);
+    }, [currentWord, interval, scrambleSpeed, scrambleOnce, words]);
 
     return (
         <span

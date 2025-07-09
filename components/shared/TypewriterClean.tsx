@@ -4,11 +4,11 @@ import React, { useEffect, useState, useRef } from "react";
 
 interface TypewriterCleanProps {
     words: string[];
-    phase: "typing" | "pausing" | "deleting";
     typingSpeed?: number;
     deletingSpeed?: number;
     className?: string;
     style?: React.CSSProperties;
+    delayBetween?: number;
 }
 
 const TypewriterClean: React.FC<TypewriterCleanProps> = ({

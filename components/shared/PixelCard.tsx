@@ -162,7 +162,7 @@ export default function PixelCard({
                                       noFocus,
                                       className = "",
                                       children
-                                  }: PixelCardProps): JSX.Element {
+                                  }: PixelCardProps): React.JSX.Element {
 
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -183,46 +183,6 @@ export default function PixelCard({
     const finalColors = colors ?? variantCfg.colors;
     const finalNoFocus = noFocus ?? variantCfg.noFocus;
 
-    const initPixels = () => {
-        if (!containerRef.current || !canvasRef.current) return;
-
-        const rect = containerRef.current.getBoundingClientRect();
-        const width = Math.floor(rect.width);
-        const height = Math.floor(rect.height);
-        const ctx = canvasRef.current.getContext("2d");
-
-        canvasRef.current.width = width;
-        canvasRef.current.height = height;
-        canvasRef.current.style.width = `${width}px`;
-        canvasRef.current.style.height = `${height}px`;
-
-        const colorsArray = finalColors.split(",");
-        const pxs = [];
-        for (let x = 0; x < width; x += parseInt(finalGap.toString(), 10)) {
-            for (let y = 0; y < height; y += parseInt(finalGap.toString(), 10)) {
-                const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
-
-                const dx = x - width / 2;
-                const dy = y - height / 2;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                const delay = reducedMotion.current ? 0 : distance;
-                if (!ctx) return;
-                pxs.push(
-                    new Pixel(
-                        canvasRef.current,
-                        ctx,
-                        x,
-                        y,
-                        color,
-                        getEffectiveSpeed(finalSpeed, reducedMotion.current),
-                        delay
-                    )
-                );
-            }
-        }
-        pixelsRef.current = pxs;
-    };
-
     const doAnimate = (fnName: keyof Pixel) => {
         animationRef.current = requestAnimationFrame(() => doAnimate(fnName));
         const timeNow = performance.now();
@@ -240,7 +200,7 @@ export default function PixelCard({
         let allIdle = true;
         for (let i = 0; i < pixelsRef.current.length; i++) {
             const pixel = pixelsRef.current[i];
-            // @ts-expect-error
+            // @ts-expect-error - Pixel[fnName]() is dynamically called, not typed
             pixel[fnName]();
             if (!pixel.isIdle) {
                 allIdle = false;
@@ -270,13 +230,97 @@ export default function PixelCard({
     };
 
     useEffect(() => {
-        initPixels();
+        if (!containerRef.current || !canvasRef.current) return;
+
+        const rect = containerRef.current.getBoundingClientRect();
+        const width = Math.floor(rect.width);
+        const height = Math.floor(rect.height);
+        const ctx = canvasRef.current.getContext("2d");
+
+        canvasRef.current.width = width;
+        canvasRef.current.height = height;
+        canvasRef.current.style.width = `${width}px`;
+        canvasRef.current.style.height = `${height}px`;
+
+        const colorsArray = finalColors.split(",");
+        const pxs: Pixel[] = [];
+
+        for (let x = 0; x < width; x += parseInt(finalGap.toString(), 10)) {
+            for (let y = 0; y < height; y += parseInt(finalGap.toString(), 10)) {
+                const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
+
+                const dx = x - width / 2;
+                const dy = y - height / 2;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const delay = reducedMotion.current ? 0 : distance;
+
+                if (!ctx) return;
+
+                pxs.push(
+                    new Pixel(
+                        canvasRef.current,
+                        ctx,
+                        x,
+                        y,
+                        color,
+                        getEffectiveSpeed(finalSpeed, reducedMotion.current),
+                        delay
+                    )
+                );
+            }
+        }
+
+        pixelsRef.current = pxs;
+
         const observer = new ResizeObserver(() => {
-            initPixels();
+            // при ресайзе пересоздаём пиксели
+            if (!containerRef.current || !canvasRef.current) return;
+
+            const rect = containerRef.current.getBoundingClientRect();
+            const width = Math.floor(rect.width);
+            const height = Math.floor(rect.height);
+            const ctx = canvasRef.current.getContext("2d");
+
+            canvasRef.current.width = width;
+            canvasRef.current.height = height;
+            canvasRef.current.style.width = `${width}px`;
+            canvasRef.current.style.height = `${height}px`;
+
+            const colorsArray = finalColors.split(",");
+            const pxs: Pixel[] = [];
+
+            for (let x = 0; x < width; x += parseInt(finalGap.toString(), 10)) {
+                for (let y = 0; y < height; y += parseInt(finalGap.toString(), 10)) {
+                    const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
+
+                    const dx = x - width / 2;
+                    const dy = y - height / 2;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const delay = reducedMotion.current ? 0 : distance;
+
+                    if (!ctx) return;
+
+                    pxs.push(
+                        new Pixel(
+                            canvasRef.current,
+                            ctx,
+                            x,
+                            y,
+                            color,
+                            getEffectiveSpeed(finalSpeed, reducedMotion.current),
+                            delay
+                        )
+                    );
+                }
+            }
+
+            pixelsRef.current = pxs;
         });
+
         if (containerRef.current) {
             observer.observe(containerRef.current);
         }
+
         return () => {
             observer.disconnect();
             if (animationRef.current !== null) {
