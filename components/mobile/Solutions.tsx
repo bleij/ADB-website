@@ -38,7 +38,7 @@ const Solutions: React.FC = () => {
     return (
         <section className="bg-white py-8 px-2 md:py-20 md:px-6" style={{ fontFamily: "'Manrope', sans-serif" }}>
             <div className="max-w-7xl mx-auto bg-[#f4f4f4] rounded-[40px] p-6 md:p-14 flex flex-col md:flex-row gap-8 md:gap-12">
-                {/* Левая часть — заголовок, дескрипшн и кнопки-карусель на мобилке */}
+                {/* Левая часть */}
                 <div className="flex-1 flex flex-col gap-3">
                     <h2 className="text-2xl md:text-3xl font-semibold text-black text-center md:text-left">
                         Мобильные решения, которые двигают бизнес вперёд
@@ -47,7 +47,7 @@ const Solutions: React.FC = () => {
                         Создаём масштабируемые приложения с нуля под ваш рынок, задачи и аудиторию. От MVP до сложных экосистем — мы превращаем идеи в стабильный и гибкий продукт.
                     </p>
 
-                    {/* Карусель кнопок только на мобилках */}
+                    {/* Мобильная карусель */}
                     <div className="md:hidden overflow-x-auto pb-2 -mx-2">
                         <div className="flex gap-2 px-2">
                             {solutions.map((s) => (
@@ -55,10 +55,10 @@ const Solutions: React.FC = () => {
                                     key={s.key}
                                     onClick={() => setActiveKey(s.key)}
                                     className={`flex-shrink-0 h-8 px-3 text-xs rounded-full whitespace-nowrap transition
-                    ${activeKey === s.key
+                                        ${activeKey === s.key
                                         ? "bg-[#D7001D] text-white"
                                         : "bg-white text-black hover:bg-gray-200"}
-                  `}
+                                    `}
                                 >
                                     {s.title}
                                 </button>
@@ -66,17 +66,17 @@ const Solutions: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Список кнопок на десктопе */}
+                    {/* Десктоп список */}
                     <div className="hidden md:flex flex-col gap-3">
                         {solutions.map((s) => (
                             <button
                                 key={s.key}
                                 onClick={() => setActiveKey(s.key)}
                                 className={`flex items-center justify-between h-14 px-4 text-lg rounded-full transition
-                  ${activeKey === s.key
+                                    ${activeKey === s.key
                                     ? "bg-[#D7001D] text-white"
                                     : "bg-white text-black hover:bg-gray-200"}
-                `}
+                                `}
                             >
                                 <span>{s.title}</span>
                                 {activeKey === s.key && (
@@ -99,7 +99,13 @@ const Solutions: React.FC = () => {
                 {/* Правая часть — карточка */}
                 <div className="flex-[1.2] bg-white rounded-3xl border border-gray-200 p-6 md:p-8 flex flex-col justify-between min-h-[300px]">
                     <div>
-                        <div className="w-full h-32 bg-gray-200 rounded-xl mb-4 md:mb-6" />
+                        <div className="w-full max-w-full max-h-[300px] sm:max-h-[360px] overflow-hidden rounded-xl mb-4 md:mb-6 flex items-center justify-center">
+                            <img
+                                src={`/images/solutions/${active.key}.png`}
+                                alt={active.title}
+                                className="w-full h-auto max-h-[300px] sm:max-h-[360px] object-contain"
+                            />
+                        </div>
                         <h3 ref={titleRef} className="text-xl md:text-2xl font-medium mb-2 text-black" />
                         <p ref={descRef} className="text-gray-800 text-[14px] md:text-[18px] leading-relaxed min-h-[60px]" />
                     </div>

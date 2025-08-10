@@ -96,7 +96,7 @@ const Header: React.FC = () => {
                     </nav>
 
                     <div className="flex gap-4 text-sm items-center">
-                        <span className="hidden sm:inline">+7 (777) 123-12-12</span>
+                        <span className="hidden sm:inline">+7 (705) 209-28-63</span>
                         <button
                             onClick={() => setIsModalOpen(true)}
                             className={`px-4 py-1 rounded border transition-colors duration-300

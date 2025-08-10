@@ -1,8 +1,7 @@
-// app/layout.tsx
 import "./globals.css";
-import type { Metadata } from "next";
-import { Manrope, Roboto_Mono } from "next/font/google";
-import TransitionWrapper from "@/components/transition/TransitionWrapper";
+import type {Metadata} from "next";
+import {Manrope, Roboto_Mono} from "next/font/google";
+import SimpleFadeTransition from "@/components/transition/SimpleFadeTransition";
 import "react-international-phone/style.css";
 
 const manrope = Manrope({
@@ -21,18 +20,14 @@ export const metadata: Metadata = {
     description: "Разработка цифровых продуктов: Web, Mobile, ML, AI.",
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html
             lang="ru"
-            className={`${manrope.variable} ${robotoMono.variable}`} // подключаем CSS-переменные шрифтов
+            className={`${manrope.variable} ${robotoMono.variable}`}
         >
         <body className="font-sans">
-        <TransitionWrapper>{children}</TransitionWrapper>
+        <SimpleFadeTransition>{children}</SimpleFadeTransition>
         </body>
         </html>
     );

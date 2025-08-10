@@ -7,42 +7,49 @@ const industries = [
         name: "Fintech",
         description: "Мы разрабатываем кастомные цифровые решения для финтеха: от мобильных банков и P2P-переводов до инвестиционных платформ, антифрод-систем и модулей KYC/AML. Интегрируем Open Banking, PSD2, API-платформы, обеспечиваем защиту данных и удобство UX. Ускорьте запуск продукта и соответствуйте регуляциям.",
         icon: "/icons/industries/fintech.svg",
+        image: "/images/industries/fintech.png",
         iconSizeForButton: 28,
     },
     {
         name: "Enterprise Solution",
         description: "Автоматизируем бизнес-процессы для крупного и среднего бизнеса. Внедряем ERP, CRM, BI-системы, внутренние порталы, корпоративные маркетплейсы. Оптимизируем рабочие процессы, сокращаем затраты, масштабируем решения под нужды команды и отрасли.",
         icon: "/icons/industries/enterprise.svg",
+        image: "/images/industries/enterprise.png",
         iconSizeForButton: 28,
     },
     {
         name: "E-commerce & Retail",
         description: "Создаём высоконагруженные e-commerce платформы, CRM для ритейла, системы онлайн-оплаты, трекинга и управления складом. Подключаем маркетплейсы, программы лояльности, CMS и омниканальные стратегии. От MVP до масштабного магазина.",
         icon: "/icons/industries/ecommerce.svg",
+        image: "/images/industries/ecommerce.png",
         iconSizeForButton: 28,
     },
     {
         name: "Healthcare & MedTech",
         description: "Разрабатываем цифровые медрешения с учётом HIPAA, GDPR и локальных стандартов. Это EMR-системы, телемедицина, трекинг состояний пациентов, онлайн-запись, ИИ для диагностики и мед BI-панели. Повышаем точность и доступность медицины.",
         icon: "/icons/industries/healthcare.svg",
+        image: "/images/industries/healthcare.png",
         iconSizeForButton: 30,
     },
     {
         name: "Transportation & Logistics",
         description: "Создаём логистические платформы, TMS-системы, трекинг-грузов, решения для водителей и диспетчеров, карты и маршруты с ИИ. Повышаем эффективность доставки, минимизируем издержки, интегрируем с 1С, SAP, API перевозчиков.",
         icon: "/icons/industries/logistics.svg",
+        image: "/images/industries/logistics.png",
         iconSizeForButton: 36,
     },
     {
         name: "Education & eLearning",
         description: "Разрабатываем обучающие платформы, LMS, образовательные маркетплейсы, системы сертификации и онлайн-курсов. Поддержка SCORM, геймификация, аналитика успеваемости, AI-тестирование и мобильные приложения для EdTech.",
         icon: "/icons/industries/education.svg",
+        image: "/images/industries/education.png",
         iconSizeForButton: 34,
     },
     {
         name: "Foodtech",
         description: "Создаём решения для доставки еды, облачных кухонь, ERP для ресторанов, онлайн-меню и системы предзаказа. Интеграция с агрегаторами, аналитика продаж, система отзывов, персонализация меню и UI/UX для повышения конверсий.",
         icon: "/icons/industries/foodtech.svg",
+        image: "/images/industries/foodtech.png",
         iconSizeForButton: 32,
     },
 ];
@@ -137,10 +144,10 @@ const Industries: React.FC = () => {
                     {/* Иконка */}
                     <div className="relative flex items-center justify-center overflow-hidden">
                         <img
-                            key={activeIndustry.icon}
-                            src={activeIndustry.icon}
+                            key={activeIndustry.image || activeIndustry.icon}
+                            src={activeIndustry.image || activeIndustry.icon}
                             alt={activeIndustry.name}
-                            className="w-[160px] h-[160px] sm:w-[300px] sm:h-[300px] object-contain transition-all duration-700 ease-in-out opacity-100 scale-100"
+                            className="max-w-[100%] max-h-[400px] w-full h-auto sm:max-h-[480px] object-contain transition-all duration-700 ease-in-out opacity-100 scale-100"
                         />
                     </div>
                 </div>

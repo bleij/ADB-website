@@ -15,6 +15,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) => {
         position: "",
         email: "",
         phone: "",
+        productToMake: "",
         productName: "",
         productType: "",
         productDesc: "",
@@ -87,6 +88,15 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose }) => {
                         <div className="sm:col-span-2">
                             <label className="block font-medium mb-1">Номер телефона*</label>
                             <input name="phone" value={formData.phone} onChange={handleChange} className="w-full border rounded px-3 py-2" />
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label className="block font-medium mb-1">Какой продукт нужно реализовать?</label>
+                            <input
+                                name="productToMake"
+                                value={formData.productToMake}
+                                onChange={handleChange}
+                                className="w-full border rounded px-3 py-2"
+                            />
                         </div>
                         <div className="sm:col-span-2 mt-4 text-right">
                             <button onClick={handleNext} className="px-6 py-2 bg-red-600 text-white rounded-full">Далее</button>

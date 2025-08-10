@@ -47,6 +47,7 @@ const Footer: React.FC = () => {
 
                         {/* Соцсети */}
                         <div className="flex gap-4">
+                            <a href="https://wa.me/77052092863"><img src="/icons/social/whatsapp.svg" className="w-8 h-8" alt="Whatsapp"/></a>
                             <a href="#"><img src="/icons/social/linkedin.svg" className="w-8 h-8" alt="LinkedIn"/></a>
                             <a href="#"><img src="/icons/social/facebook.svg" className="w-8 h-8" alt="Facebook"/></a>
                             <a href="#"><img src="/icons/social/twitter.svg" className="w-8 h-8" alt="Twitter"/></a>
@@ -64,8 +65,10 @@ const Footer: React.FC = () => {
                                 <path
                                     d="M32.0391 29.7409L45.7372 3.02752H46.6712L60.4135 29.7409H54.3206L52.5861 26.0901H39.8222L38.132 29.7409H32.0391ZM50.407 21.5043L46.3597 12.7779H46.004L41.9567 21.5043L41.6456 22.083H50.7181L50.407 21.5043ZM72.7909 15.7164H73.0131V0H78.3501V29.7409H74.8365L73.9918 27.7819H73.7692C73.7692 27.7819 72.4795 30.0971 68.6104 30.0971C64.2517 30.0971 60.9606 27.025 60.9606 22.083C60.9606 17.2747 64.1628 13.98 68.4322 13.98C71.7679 13.98 72.7909 15.7164 72.7909 15.7164ZM73.2799 21.994C73.2799 19.8124 71.9015 18.3877 69.7666 18.3877C67.7207 18.3877 66.342 19.857 66.342 21.994C66.342 24.1311 67.7207 25.6894 69.7666 25.6894C71.9015 25.6894 73.2799 24.2201 73.2799 21.994ZM82.6108 29.7409V0H87.9478V15.7609H88.17C88.17 15.7609 89.1486 13.98 92.484 13.98C96.7538 13.98 100 17.2747 100 22.083C100 27.025 96.7091 30.0971 92.3061 30.0971C88.4371 30.0971 87.1916 27.7374 87.1916 27.7374H86.9695L86.1244 29.7409H82.6108ZM87.681 21.994C87.681 24.2201 89.0597 25.6894 91.1499 25.6894C93.2402 25.6894 94.6189 24.1311 94.6189 21.994C94.6189 19.857 93.2402 18.3877 91.1499 18.3877C89.0597 18.3877 87.681 19.8124 87.681 21.994Z"
                                     fill="currentColor"/>
-                            </svg>                        </div>
+                            </svg>
+                        </div>
                         <div className="flex gap-3">
+                            <a href="https://wa.me/77052092863"><img src="/icons/social/whatsapp.svg" className="w-8 h-8" alt="Whatsapp"/></a>
                             <a href="#"><img src="/icons/social/linkedin.svg" className="w-8 h-8" alt="LinkedIn"/></a>
                             <a href="#"><img src="/icons/social/facebook.svg" className="w-8 h-8" alt="Facebook"/></a>
                             <a href="#"><img src="/icons/social/twitter.svg" className="w-8 h-8" alt="Twitter"/></a>
@@ -73,17 +76,35 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Навигация — только на мобилке */}
-                    <nav className="flex md:hidden justify-center gap-4 text-[16px] font-medium">
-                        <a href="#projects" className="hover:underline">Проекты</a>
-                        <a href="#services" className="hover:underline">Услуги</a>
-                        <a href="#contact-form" className="hover:underline">Контакты</a>
-                    </nav>
+                    <div className="flex md:hidden justify-center gap-4 text-[16px] font-medium flex-wrap">
+                        <a href="/projects" className="hover:underline">Проекты</a>
+
+                        <details className="relative">
+                            <summary className="cursor-pointer hover:underline list-none">Услуги</summary>
+                            <div className="absolute mt-2 bg-white text-black rounded-md shadow-md p-2 space-y-1 z-10">
+                                <a href="/ml" className="block hover:underline">ML</a>
+                                <a href="/uxui" className="block hover:underline">UI/UX</a>
+                                <a href="/mobile" className="block hover:underline">Mobile</a>
+                                <a href="/web" className="block hover:underline">Web</a>
+                            </div>
+                        </details>
+                    </div>
 
                     {/* Контакты */}
                     <div className="text-[16px] md:text-[18px] leading-relaxed space-y-2 md:space-y-4 text-left">
                         <div><strong>Почта:</strong> info@adb.com</div>
-                        <div><strong>Телефон:</strong> +7 777 123 45 67</div>
-                        <div><strong>Адрес:</strong> Казыбек 12/2</div>
+                        <div>
+                            <strong>Телефон:</strong>{" "}
+                            <a
+                                href="https://wa.me/77052092863"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline"
+                            >
+                                +7 705 209 28 63
+                            </a>
+                        </div>
+                        <div><strong>Адрес:</strong> Розыбакиева 227</div>
                     </div>
 
                     <div className="h-[1px] w-full bg-white opacity-50"/>

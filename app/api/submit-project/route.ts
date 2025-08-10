@@ -10,6 +10,7 @@ export async function POST(req: NextRequest) {
 👤 Должность: ${data.position}
 📧 Email: ${data.email}
 📞 Телефон: ${data.phone}
+❓ Продукт для реализации: ${data.productToMake}
 
 📦 Название продукта: ${data.productName}
 Тип: ${data.productType}

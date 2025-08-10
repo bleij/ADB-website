@@ -35,9 +35,10 @@ const MLHero: React.FC = () => {
 
                 {/* Right column */}
                 <div className="flex-1 flex justify-center">
-                    <div
-                        // placeholder for your illustration
-                        className="w-full max-w-md bg-gray-100 rounded-3xl shadow-xl"
+                    <img
+                        src="/images/ml/stack.png"
+                        alt="Описание картинки"
+                        className="w-full object-contain"
                         style={{ aspectRatio: "4/3" }}
                     />
                 </div>

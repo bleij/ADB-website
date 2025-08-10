@@ -5,7 +5,7 @@ import React from "react";
 const Hero: React.FC = () => {
     return (
         <section
-            className="bg-white min-h-screen flex items-center px-6 pt-20 sm:pt-32 lg:pt-0 sm:px-10 lg:px-20"
+            className="bg-white min-h-screen flex items-center px-6 pt-20 md:pt-0 sm:px-10 lg:px-20"
             style={{fontFamily: "'Manrope', sans-serif"}}
         >
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
