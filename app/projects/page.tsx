@@ -101,7 +101,7 @@ export default function ProjectsPage() {
 
                                 {/* Картинка */}
                                 <div className="w-full md:w-1/2">
-                                    <div className="w-full h-64 md:h-80 rounded-[30px] overflow-hidden bg-gray-100 flex items-center justify-center">
+                                    <div className="p-4 w-full h-72 md:h-96 rounded-[30px] overflow-hidden bg-gray-100 flex items-center justify-center">
                                         <Image
                                             src={item.image}
                                             alt={item.title}

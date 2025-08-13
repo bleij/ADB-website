@@ -1,23 +1,28 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const useCases = [
     {
         title: "Сложная навигация и низкая вовлеченность",
         desc: "Оптимизируем пользовательские сценарии, чтобы удерживать пользователей и увеличивать вовлеченность.",
+        image: "/images/uxui/navigation.png",
     },
     {
         title: "Низкая конверсия на сайте или в приложении",
         desc: "Перерабатываем интерфейс с фокусом на целевые действия: покупки, заявки, регистрации.",
+        image: "/images/uxui/conversion.png",
     },
     {
         title: "Недоступность и адаптивность на устройствах",
         desc: "Создаём полностью адаптивный дизайн с учётом accessibility-гайдлайнов.",
+        image: "/images/uxui/accessibility.png",
     },
     {
         title: "Несовременный или нерелевантный визуал",
         desc: "Обновляем визуальный стиль с учётом бренд-стратегии и современных трендов UI/UX.",
+        image: "/images/uxui/visual.png",
     },
 ];
 
@@ -39,7 +44,7 @@ export default function UseCaseBlock() {
                         <div
                             key={index}
                             className={`flex flex-col md:flex-row items-center gap-8 ${
-                                index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                                index % 2 === 1 ? "md:flex-row-reverse" : ""
                             }`}
                         >
                             {/* Текст */}
@@ -56,9 +61,15 @@ export default function UseCaseBlock() {
                                 </button>
                             </div>
 
-                            {/* Прямоугольник */}
-                            <div className="w-full md:w-1/2">
-                                <div className="w-full h-44 md:h-56 bg-gray-100 rounded-[30px]" />
+                            {/* Картинка */}
+                            <div className="p-4 w-0.9rem h-72 md:h-96 rounded-[30px] overflow-hidden bg-gray-100 flex items-center justify-center">
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    width={800}
+                                    height={600}
+                                    className="w-full h-full object-contain"
+                                />
                             </div>
                         </div>
                     ))}

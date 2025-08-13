@@ -5,28 +5,28 @@ import Image from "next/image";
 
 const steps = [
     {
-        icon: "/icons/uiux/eye.svg",
+        icon: "/icons/uxui/eye.svg",
         iconSize: 50,
         title: "Исследование и аналитика",
         description:
             "Глубокое понимание бизнеса и пользователей. Анализируем цели продукта, поведение аудитории и конкурентов. Закладываем прочную основу для пользовательского опыта.",
     },
     {
-        icon: "/icons/uiux/prototype.svg",
+        icon: "/icons/uxui/prototype.svg",
         iconSize: 50,
         title: "Структура и прототипирование",
         description:
             "Функциональная логика будущего интерфейса. Создаём карту экранов, пользовательские сценарии (CJM) и кликабельные прототипы. Проверяем гипотезы до этапа визуального дизайна.",
     },
     {
-        icon: "/icons/uiux/ui.svg",
+        icon: "/icons/uxui/ui.svg",
         iconSize: 50,
         title: "UI-дизайн и визуальная система",
         description:
             "Современный, адаптивный и брендированный интерфейс. Формируем стиль, цветовую палитру, типографику и компоненты. Создаём понятный и визуально чистый дизайн, готовый к реализации.",
     },
     {
-        icon: "/icons/uiux/dev.svg",
+        icon: "/icons/uxui/dev.svg",
         iconSize: 50,
         title: "Подготовка к разработке",
         description:
@@ -47,9 +47,12 @@ const StepsBlock: React.FC = () => {
                     {steps.map((step, index) => (
                         <div
                             key={index}
-                            className="flex items-start border border-gray-200 rounded-2xl p-6 sm:p-8 gap-6"
+                            className="relative group flex items-start border border-gray-200 rounded-2xl p-6 sm:p-8 gap-6 bg-white text-black overflow-hidden transition-colors duration-500 hover:text-white hover:bg-[#D7001D]"
                         >
-                            <div className="flex items-center justify-center flex-shrink-0">
+                            {/* Анимированный круг */}
+                            <div className="absolute h-[5em] w-[5em] -top-[2.5em] -right-[2.5em] rounded-full bg-[#D7001D] opacity-0 group-hover:opacity-100 group-hover:scale-[800%] transition-transform duration-500 z-0" />
+
+                            <div className="relative z-10 flex items-center justify-center flex-shrink-0">
                                 <Image
                                     src={step.icon}
                                     alt={step.title}
@@ -57,11 +60,9 @@ const StepsBlock: React.FC = () => {
                                     height={step.iconSize}
                                 />
                             </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="text-xl font-normal text-gray-900">
-                                    {step.title}
-                                </h3>
-                                <p className="text-gray-600 text-sm font-light leading-relaxed">
+                            <div className="relative z-10 flex flex-col gap-2">
+                                <h3 className="text-xl font-normal">{step.title}</h3>
+                                <p className="text-sm font-light leading-relaxed">
                                     {step.description}
                                 </p>
                             </div>

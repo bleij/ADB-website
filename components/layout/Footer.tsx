@@ -2,13 +2,15 @@
 
 import React from "react";
 import WireframeWave from "@/components/shared/WireframeWave";
+import Link from "next/link";
+import Image from "next/image";
 
 const Footer: React.FC = () => {
     return (
         <div className="bg-white w-full pt-24">
             <footer
                 className="relative overflow-hidden bg-[#D7001D] text-white px-6 sm:px-10 rounded-t-[60px] mx-auto py-8 md:py-20"
-                style={{fontFamily: "'Manrope', sans-serif", width: "92%"}}
+                style={{ fontFamily: "'Manrope', sans-serif", width: "92%" }}
             >
                 {/* Фон */}
                 <div className="absolute inset-0 z-0">
@@ -40,17 +42,35 @@ const Footer: React.FC = () => {
 
                         {/* Навигация */}
                         <nav className="flex gap-6 text-[18px] font-medium">
-                            <a href="#projects" className="hover:underline">Проекты</a>
-                            <a href="#services" className="hover:underline">Услуги</a>
-                            <a href="#contact-form" className="hover:underline">Контакты</a>
+                            <Link href="/projects" className="hover:underline">Проекты</Link>
+                            <details className="relative">
+                                <summary className="cursor-pointer hover:underline list-none">
+                                    Услуги
+                                </summary>
+                                <div className="absolute mt-2 bg-white text-black rounded-md shadow-md p-2 space-y-1 z-10">
+                                    <a href="/ml" className="block hover:underline">ML</a>
+                                    <a href="/uxui" className="block hover:underline">UI/UX</a>
+                                    <a href="/mobile" className="block hover:underline">Mobile</a>
+                                    <a href="/web" className="block hover:underline">Web</a>
+                                </div>
+                            </details>
+                            <Link href="/#contact-form" className="hover:underline">Контакты</Link>
                         </nav>
 
                         {/* Соцсети */}
                         <div className="flex gap-4">
-                            <a href="https://wa.me/77052092863"><img src="/icons/social/whatsapp.svg" className="w-8 h-8" alt="Whatsapp"/></a>
-                            <a href="#"><img src="/icons/social/linkedin.svg" className="w-8 h-8" alt="LinkedIn"/></a>
-                            <a href="#"><img src="/icons/social/facebook.svg" className="w-8 h-8" alt="Facebook"/></a>
-                            <a href="#"><img src="/icons/social/twitter.svg" className="w-8 h-8" alt="Twitter"/></a>
+                            <a href="https://wa.me/77052092863">
+                                <Image src="/icons/social/whatsapp.svg" alt="Whatsapp" width={32} height={32} />
+                            </a>
+                            <a href="#">
+                                <Image src="/icons/social/linkedin.svg" alt="LinkedIn" width={32} height={32} />
+                            </a>
+                            <a href="#">
+                                <Image src="/icons/social/facebook.svg" alt="Facebook" width={32} height={32} />
+                            </a>
+                            <a href="#">
+                                <Image src="/icons/social/twitter.svg" alt="Twitter" width={32} height={32} />
+                            </a>
                         </div>
                     </div>
 
@@ -68,16 +88,24 @@ const Footer: React.FC = () => {
                             </svg>
                         </div>
                         <div className="flex gap-3">
-                            <a href="https://wa.me/77052092863"><img src="/icons/social/whatsapp.svg" className="w-8 h-8" alt="Whatsapp"/></a>
-                            <a href="#"><img src="/icons/social/linkedin.svg" className="w-8 h-8" alt="LinkedIn"/></a>
-                            <a href="#"><img src="/icons/social/facebook.svg" className="w-8 h-8" alt="Facebook"/></a>
-                            <a href="#"><img src="/icons/social/twitter.svg" className="w-8 h-8" alt="Twitter"/></a>
+                            <a href="https://wa.me/77052092863">
+                                <Image src="/icons/social/whatsapp.svg" alt="Whatsapp" width={32} height={32} />
+                            </a>
+                            <a href="#">
+                                <Image src="/icons/social/linkedin.svg" alt="LinkedIn" width={32} height={32} />
+                            </a>
+                            <a href="#">
+                                <Image src="/icons/social/facebook.svg" alt="Facebook" width={32} height={32} />
+                            </a>
+                            <a href="#">
+                                <Image src="/icons/social/twitter.svg" alt="Twitter" width={32} height={32} />
+                            </a>
                         </div>
                     </div>
 
                     {/* Навигация — только на мобилке */}
                     <div className="flex md:hidden justify-center gap-4 text-[16px] font-medium flex-wrap">
-                        <a href="/projects" className="hover:underline">Проекты</a>
+                        <Link href="/projects" className="hover:underline">Проекты</Link>
 
                         <details className="relative">
                             <summary className="cursor-pointer hover:underline list-none">Услуги</summary>
@@ -88,13 +116,15 @@ const Footer: React.FC = () => {
                                 <a href="/web" className="block hover:underline">Web</a>
                             </div>
                         </details>
+
+                        <Link href="/#contact-form" className="hover:underline">Контакты</Link>
                     </div>
 
                     {/* Контакты */}
                     <div className="text-[16px] md:text-[18px] leading-relaxed space-y-2 md:space-y-4 text-left">
                         <div><strong>Почта:</strong> info@adb.com</div>
                         <div>
-                            <strong>Телефон:</strong>{" "}
+                            <strong>Телефон (WhatsApp):</strong>{" "}
                             <a
                                 href="https://wa.me/77052092863"
                                 target="_blank"
@@ -107,11 +137,12 @@ const Footer: React.FC = () => {
                         <div><strong>Адрес:</strong> Розыбакиева 227</div>
                     </div>
 
-                    <div className="h-[1px] w-full bg-white opacity-50"/>
+                    <div className="h-[1px] w-full bg-white opacity-50" />
 
                     {/* Низ */}
                     <div
-                        className="flex flex-col md:flex-row justify-between items-center text-[14px] md:text-[16px] text-white/90 gap-2 text-center md:text-left">
+                        className="flex flex-col md:flex-row justify-between items-center text-[14px] md:text-[16px] text-white/90 gap-2 text-center md:text-left"
+                    >
                         <div>© 2025 Adb. Все права защищены.</div>
                         <a href="#" className="hover:underline">Политика конфиденциальности</a>
                     </div>

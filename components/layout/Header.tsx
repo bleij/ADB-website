@@ -10,6 +10,22 @@ const Header: React.FC = () => {
     const [isScrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    useEffect(() => {
+        const handler = (e: Event) => {
+            console.log("[Header] openProjectModal received", e);
+            setIsModalOpen(true);
+        };
+
+        if (typeof window !== "undefined") {
+            window.addEventListener("openProjectModal", handler);
+        }
+
+        return () => {
+            if (typeof window !== "undefined") {
+                window.removeEventListener("openProjectModal", handler);
+            }
+        };
+    }, []);
     const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
     const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -91,8 +107,8 @@ const Header: React.FC = () => {
                                 </div>
                             )}
                         </div>
-                        <a href="#footer" onClick={(e) => handleAnchorClick(e, "footer")}
-                           className="hover:underline">Контакты</a>
+                        <Link href="/" onClick={(e) => handleAnchorClick(e, "contact-form")}
+                           className="hover:underline">Контакты</Link>
                     </nav>
 
                     <div className="flex gap-4 text-sm items-center">

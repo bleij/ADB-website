@@ -3,9 +3,12 @@
 import React from "react";
 
 const MLHero: React.FC = () => {
+    const handleOpenModal = () => {
+        window.dispatchEvent(new Event("openProjectModal"));
+    };
+
     return (
         <section
-            // full screen height on desktop, center content vertically
             className="bg-white py-20 px-6 sm:px-10 lg:px-20 min-h-screen flex items-center"
             style={{ fontFamily: "var(--font-manrope)" }}
         >
@@ -25,16 +28,16 @@ const MLHero: React.FC = () => {
                         до интеллектуальной автоматизации процессов.
                     </p>
                     {/* button */}
-                    <a
-                        href="#contact-form"
+                    <button
+                        onClick={handleOpenModal}
                         className="inline-flex items-center bg-[#D7001D] text-white font-semibold px-6 py-3 rounded-md transition hover:bg-opacity-90"
                     >
                         Реализовать продукт&nbsp;<span className="text-xl">→</span>
-                    </a>
+                    </button>
                 </div>
 
                 {/* Right column */}
-                <div className="flex-1 flex justify-center">
+                <div className="flex-[1.3] flex justify-center">
                     <img
                         src="/images/ml/stack.png"
                         alt="Описание картинки"

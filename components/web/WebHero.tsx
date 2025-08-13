@@ -4,6 +4,10 @@ import React from "react";
 import Image from "next/image";
 
 const WebHero: React.FC = () => {
+    const handleOpenModal = () => {
+        window.dispatchEvent(new Event("openProjectModal"));
+    };
+
     return (
         <section
             className="bg-white min-h-screen pt-12 sm:pt-32 lg:pt-0 flex items-center"
@@ -17,7 +21,6 @@ const WebHero: React.FC = () => {
                         alt="Web development preview"
                         width={800}
                         height={500}
-                        className=""
                         priority
                     />
                 </div>
@@ -26,12 +29,12 @@ const WebHero: React.FC = () => {
                     <p className="text-gray-800 text-base leading-relaxed mb-6">
                         Предлагаем веб-разработку под ключ для бизнеса в Казахстане и странах СНГ. Создаём сайты и веб-сервисы, которые быстро работают, масштабируются и решают реальные задачи.
                     </p>
-                    <a
-                        href="#contact-form"
+                    <button
+                        onClick={handleOpenModal}
                         className="inline-block px-6 py-3 font-semibold bg-[#D7001D] text-white rounded-md hover:bg-[#bb0017] transition"
                     >
                         Реализовать продукт →
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -45,8 +48,8 @@ const WebHero: React.FC = () => {
                     <p className="text-gray-800 text-[18px] leading-relaxed mb-8">
                         Предлагаем веб-разработку под ключ для бизнеса в Казахстане и странах СНГ. Создаём сайты и веб-сервисы, которые быстро работают, масштабируются и решают реальные задачи.
                     </p>
-                    <a
-                        href="#contact-form"
+                    <button
+                        onClick={handleOpenModal}
                         className="relative inline-block px-6 py-3 font-semibold border-2 border-[#D7001D] text-[#D7001D] rounded-md overflow-hidden transition-colors duration-300 group"
                     >
                         <span className="relative z-10 group-hover:text-white transition-colors duration-300">
@@ -58,7 +61,7 @@ const WebHero: React.FC = () => {
                                 "group-hover:w-[400%] group-hover:h-[400%] group-hover:bottom-[-100%] group-hover:right-[-100%]"
                             }
                         />
-                    </a>
+                    </button>
                 </div>
                 <div className="flex-1 flex justify-center">
                     <Image
@@ -66,7 +69,6 @@ const WebHero: React.FC = () => {
                         alt="Web development preview"
                         width={800}
                         height={500}
-                        className=""
                         priority
                     />
                 </div>
