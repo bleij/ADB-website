@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import { MAIN_COLOR_HEX } from "@/utils/colors";
-import { PhoneInput } from "react-international-phone";
+import React, {useState} from "react";
+import {MAIN_COLOR_HEX} from "@/utils/colors";
+import {PhoneInput} from "react-international-phone";
 import "react-international-phone/style.css";
 
 const stats = [
-    { value: "10", label: "разработчиков\nв команде" },
-    { value: "6+", label: "лет опыта\nв разработке" },
-    { value: "100 000", label: "строк кода\nнаписано" },
+    {value: "10", label: "разработчиков\nв команде"},
+    {value: "6+", label: "лет опыта\nв разработке"},
+    {value: "100 000", label: "строк кода\nнаписано"},
 ];
 
 const Contact: React.FC = () => {
@@ -24,8 +24,8 @@ const Contact: React.FC = () => {
         try {
             const res = await fetch("/api/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, phone }),
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({name, phone}),
             });
 
             if (res.ok) {
@@ -51,12 +51,12 @@ const Contact: React.FC = () => {
         <section
             id="contact-form"
             className="relative z-20 bg-white py-20 px-6"
-            style={{ fontFamily: "'Manrope', sans-serif" }}
+            style={{fontFamily: "'Manrope', sans-serif"}}
         >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
                     <h2 className="text-4xl sm:text-5xl font-medium mb-6 text-black leading-tight">
-                        Превратим вашу идею в <br className="hidden sm:block" /> реальность
+                        Превратим вашу идею в <br className="hidden sm:block"/> реальность
                     </h2>
 
                     {/* Mobile Stats */}
@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
                                 </div>
                                 <div
                                     className="h-[2px] w-[32px] mb-3"
-                                    style={{ backgroundColor: MAIN_COLOR_HEX }}
+                                    style={{backgroundColor: MAIN_COLOR_HEX}}
                                 />
                                 <div className="text-base text-black whitespace-pre-line">
                                     {stat.label}
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
                     </div>
 
                     <p className="text-base sm:text-xl text-black mb-8 leading-relaxed">
-                        Оставьте заявку и получите подробную <br className="hidden sm:block" />
+                        Оставьте заявку и получите подробную <br className="hidden sm:block"/>
                         консультацию о наших услугах
                     </p>
 
@@ -98,24 +98,24 @@ const Contact: React.FC = () => {
                         />
 
                         <PhoneInput
-                            defaultCountry="kz"
-                            value={phone}
-                            onChange={setPhone}
-                            inputClassName="
-                                !bg-[#F4F5F7] !text-black !text-lg
-                                !w-full !h-[72px] !pl-[68px] !pr-6
-                                !rounded-full !border-none !focus:outline-none
-                            "
-                            containerClassName="!w-full !relative"
-                            buttonClassName="
-                                !absolute !left-5 !top-1/2 !-translate-y-1/2
-                                !w-[32px] !h-[32px]
-                                !bg-transparent !rounded-none !shadow-none !border-none
-                                !p-0 !m-0 !flex !items-center !justify-center
-                            "
-                            dropdownClassName="!rounded-xl !shadow-md"
-                            required
-                            disabled={sent}
+                            {...({
+                                defaultCountry: "kz",
+                                value: phone,
+                                onChange: setPhone,
+                                inputClassName: `
+      !bg-[#F4F5F7] !text-black !text-lg
+      !w-full !h-[72px] !pl-[68px] !pr-6
+      !rounded-full !border-none !focus:outline-none
+    `,
+                                containerClassName: "!w-full !relative",
+                                buttonClassName: `
+      !absolute !left-5 !top-1/2 !-translate-y-1/2
+      !w-[32px] !h-[32px]
+      !bg-transparent !rounded-none !shadow-none !border-none
+      !p-0 !m-0 !flex !items-center !justify-center
+    `,
+                                dropdownClassName: "!rounded-xl !shadow-md",
+                            } as any)}
                         />
 
                         <button
@@ -124,7 +124,7 @@ const Contact: React.FC = () => {
                             className={`w-full sm:w-[220px] h-[60px] sm:h-[72px] text-white text-base sm:text-lg font-semibold rounded-full transition-colors ${
                                 sent
                                     ? "bg-[#4B4B4B] opacity-70 cursor-not-allowed"
-                                    : "bg-[#4B4B4B] hover:bg-[#D7001D]"
+                                    : "bg-[#4B4B4B] hover:bg-[#D7001D"
                             }`}
                         >
                             {sent
@@ -157,7 +157,7 @@ const Contact: React.FC = () => {
                             </div>
                             <div
                                 className="h-[2px] w-[32px] mb-3"
-                                style={{ backgroundColor: MAIN_COLOR_HEX }}
+                                style={{backgroundColor: MAIN_COLOR_HEX}}
                             />
                             <div className="text-base text-black whitespace-pre-line">
                                 {stat.label}
