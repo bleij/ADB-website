@@ -123,7 +123,6 @@ export default function Approach() {
                             height={600}
                             className="object-contain w-full h-full"
                         />
-                        className="object-cover w-full h-full"/>
                     </div>
                     <div className="w-full lg:w-1/2">
                         <h3 className="text-xl font-semibold mb-4">{strategy.title}</h3>
@@ -148,13 +147,12 @@ export default function Approach() {
                     </div>
                     <div className="w-full h-[300px] rounded-2xl overflow-hidden lg:h-[450px] lg:w-1/2">
                         <Image
-                            src={development.image}
-                            alt={development.title}
+                            src={strategy.image}
+                            alt={strategy.title}
                             width={800}
                             height={600}
                             className="object-contain w-full h-full"
                         />
-                        className="object-cover w-full h-full"/>
                     </div>
                 </div>
 
