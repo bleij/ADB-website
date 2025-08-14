@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect} from "react";
 import Image from "next/image";
 
 interface AccordionItemProps {
@@ -9,7 +9,7 @@ interface AccordionItemProps {
     defaultOpen?: boolean;
 }
 
-const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, defaultOpen = false }) => {
+const AccordionItem: React.FC<AccordionItemProps> = ({title, content, defaultOpen = false}) => {
     const [open, setOpen] = useState(defaultOpen);
     const refContent = useRef<HTMLDivElement>(null);
     const [maxHeight, setMaxHeight] = useState("0px");
@@ -31,12 +31,12 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, defaultOp
                     className={`w-5 h-5 transform transition-transform duration-300 ease-out ${open ? "rotate-180" : "rotate-0"}`}
                     viewBox="0 0 10 6"
                 >
-                    <path d="M0 0l5 6 5-6H0z" fill="currentColor" />
+                    <path d="M0 0l5 6 5-6H0z" fill="currentColor"/>
                 </svg>
             </button>
             <div
                 ref={refContent}
-                style={{ maxHeight }}
+                style={{maxHeight}}
                 className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${open ? "opacity-100" : "opacity-0"}`}
             >
                 <div className="pb-4 text-sm text-gray-600 leading-relaxed">
@@ -54,9 +54,18 @@ const strategy = {
     image: "/images/web/strategy.png",
     title: "Стратегия и Проектирование",
     items: [
-        { title: "Анализ и аудит", content: ["Перед стартом мы проводим глубокий анализ вашего бизнеса, ЦА и конкурентов. Определяем цели проекта, приоритеты и ключевые показатели эффективности (KPI), чтобы архитектура и технологии точно соответствовали задачам."] },
-        { title: "Проектирование архитектуры", content: ["Проектируем когерентную и надёжную архитектуру приложений и сервисов с учётом масштабирования и отказоустойчивости."] },
-        { title: "Создание дизайн-системы", content: ["Разрабатываем единый визуальный язык: компоненты, стили и гайдлайны, чтобы каждый элемент был предсказуем и удобен."] },
+        {
+            title: "Анализ и аудит",
+            content: ["Перед стартом мы проводим глубокий анализ вашего бизнеса, ЦА и конкурентов. Определяем цели проекта, приоритеты и ключевые показатели эффективности (KPI), чтобы архитектура и технологии точно соответствовали задачам."]
+        },
+        {
+            title: "Проектирование архитектуры",
+            content: ["Проектируем когерентную и надёжную архитектуру приложений и сервисов с учётом масштабирования и отказоустойчивости."]
+        },
+        {
+            title: "Создание дизайн-системы",
+            content: ["Разрабатываем единый визуальный язык: компоненты, стили и гайдлайны, чтобы каждый элемент был предсказуем и удобен."]
+        },
     ],
 };
 
@@ -64,9 +73,18 @@ const development = {
     image: "/images/web/development.png",
     title: "Разработка и Технологии",
     items: [
-        { title: "FrontEnd", content: ["Используем современные фреймворки (React, Next.js, Vue) для создания быстрых, адаптивных интерфейсов. Следим за Web Vitals и высокой производительностью."] },
-        { title: "Backend", content: ["Строим надёжные API и серверную логику на Node.js, Python или Go. Обеспечиваем масштабируемость и безопасность данных."] },
-        { title: "DevOps & автоматизация", content: ["Настраиваем CI/CD конвейеры, контейнеризацию и мониторинг. Автоматизируем развёртывание и управление инфраструктурой."] },
+        {
+            title: "FrontEnd",
+            content: ["Используем современные фреймворки (React, Next.js, Vue) для создания быстрых, адаптивных интерфейсов. Следим за Web Vitals и высокой производительностью."]
+        },
+        {
+            title: "Backend",
+            content: ["Строим надёжные API и серверную логику на Node.js, Python или Go. Обеспечиваем масштабируемость и безопасность данных."]
+        },
+        {
+            title: "DevOps & автоматизация",
+            content: ["Настраиваем CI/CD конвейеры, контейнеризацию и мониторинг. Автоматизируем развёртывание и управление инфраструктурой."]
+        },
     ],
 };
 
@@ -74,9 +92,18 @@ const launch = {
     image: "/images/web/launch.png",
     title: "Запуск и Поддержка",
     items: [
-        { title: "Тестирование и QA", content: ["Проводим модульное, интеграционное и e2e тестирование. Проверяем адаптивность, кроссбраузерность и общую стабильность."] },
-        { title: "SEO и Web Vitals", content: ["Оптимизируем сайт или приложение для поисковых систем и метрик Core Web Vitals. Улучшаем время загрузки и взаимодействие."] },
-        { title: "Поддержка и развитие", content: ["Обеспечиваем техническую поддержку, регулярные обновления и расширение функциональности по потребностям бизнеса."] },
+        {
+            title: "Тестирование и QA",
+            content: ["Проводим модульное, интеграционное и e2e тестирование. Проверяем адаптивность, кроссбраузерность и общую стабильность."]
+        },
+        {
+            title: "SEO и Web Vitals",
+            content: ["Оптимизируем сайт или приложение для поисковых систем и метрик Core Web Vitals. Улучшаем время загрузки и взаимодействие."]
+        },
+        {
+            title: "Поддержка и развитие",
+            content: ["Обеспечиваем техническую поддержку, регулярные обновления и расширение функциональности по потребностям бизнеса."]
+        },
     ],
 };
 
@@ -89,13 +116,21 @@ export default function Approach() {
                 {/* Strategy */}
                 <div className="flex flex-col-reverse lg:flex-row items-center gap-10 mb-24">
                     <div className="w-full h-[300px] rounded-2xl overflow-hidden lg:h-[450px] lg:w-1/2">
-                        <Image src={strategy.image} alt={strategy.title} width={800} height={600} className="object-cover w-full h-full" />
+                        <Image
+                            src={strategy.image}
+                            alt={strategy.title}
+                            width={800}
+                            height={600}
+                            className="object-contain w-full h-full"
+                        />
+                        className="object-cover w-full h-full"/>
                     </div>
                     <div className="w-full lg:w-1/2">
                         <h3 className="text-xl font-semibold mb-4">{strategy.title}</h3>
                         <div className="space-y-2">
                             {strategy.items.map((item, idx) => (
-                                <AccordionItem key={idx} title={item.title} content={item.content} defaultOpen={idx === 0} />
+                                <AccordionItem key={idx} title={item.title} content={item.content}
+                                               defaultOpen={idx === 0}/>
                             ))}
                         </div>
                     </div>
@@ -107,25 +142,38 @@ export default function Approach() {
                         <h3 className="text-xl font-semibold mb-4">{development.title}</h3>
                         <div className="space-y-2">
                             {development.items.map((item, idx) => (
-                                <AccordionItem key={idx} title={item.title} content={item.content} />
+                                <AccordionItem key={idx} title={item.title} content={item.content}/>
                             ))}
                         </div>
                     </div>
                     <div className="w-full h-[300px] rounded-2xl overflow-hidden lg:h-[450px] lg:w-1/2">
-                        <Image src={development.image} alt={development.title} width={800} height={600} className="object-cover w-full h-full" />
+                        <Image
+                            src={development.image}
+                            alt={development.title}
+                            width={800}
+                            height={600}
+                            className="object-contain w-full h-full"
+                        />
+                        className="object-cover w-full h-full"/>
                     </div>
                 </div>
 
                 {/* Launch */}
                 <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
                     <div className="w-full h-[300px] rounded-2xl overflow-hidden lg:h-[450px] lg:w-1/2">
-                        <Image src={launch.image} alt={launch.title} width={800} height={600} className="object-cover w-full h-full" />
+                        <Image
+                            src={launch.image}
+                            alt={launch.title}
+                            width={800}
+                            height={600}
+                            className="object-contain w-full h-full"
+                        />
                     </div>
                     <div className="w-full lg:w-1/2">
                         <h3 className="text-xl font-semibold mb-4">{launch.title}</h3>
                         <div className="space-y-2">
                             {launch.items.map((item, idx) => (
-                                <AccordionItem key={idx} title={item.title} content={item.content} />
+                                <AccordionItem key={idx} title={item.title} content={item.content}/>
                             ))}
                         </div>
                     </div>

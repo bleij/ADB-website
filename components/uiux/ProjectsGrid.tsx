@@ -61,7 +61,7 @@ export default function ProjectsGrid() {
                                 src={project.image}
                                 alt={project.title}
                                 fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                className="object-scale-down"
                             />
                         </a>
                     ))}
@@ -81,7 +81,7 @@ export default function ProjectsGrid() {
                                 src={project.image}
                                 alt={project.title}
                                 fill
-                                className="object-cover"
+                                className="object-scale-down"
                             />
                         </a>
                     ))}

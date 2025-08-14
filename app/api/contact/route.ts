@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
         `;
 
         const TELEGRAM_BOT_TOKEN = "7559388010:AAFCCu5RX1itBly2U-KhZQe7-53RcNTISz0";
-        const CHAT_ID = "6859758284";
+        const CHAT_ID = "-1002624626495";
 
         const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
             method: "POST",
