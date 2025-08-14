@@ -147,8 +147,8 @@ export default function Approach() {
                     </div>
                     <div className="w-full h-[300px] rounded-2xl overflow-hidden lg:h-[450px] lg:w-1/2">
                         <Image
-                            src={strategy.image}
-                            alt={strategy.title}
+                            src={development.image}
+                            alt={development.title}
                             width={800}
                             height={600}
                             className="object-contain w-full h-full"
